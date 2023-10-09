@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <h1>Car List</h1>
+    <ul>
+        {% for car in cars %}
+            <li>
+                <h3>{{ car.title }}</h3>
+                <p>IMG_URL: {{ car.img_url }}</p>
+                <p>Price: {{ car.price }}</p>
+                <p>Location: {{ car.location }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
