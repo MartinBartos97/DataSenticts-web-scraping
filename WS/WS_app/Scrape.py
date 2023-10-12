@@ -4,15 +4,16 @@ from WS_app.models import Car
 
 
 def scrape():
-    cars = []
+
+    car_offers = []
     for i in range(0, 100, 20):
         source = requests.get("https://auto.bazos.cz/"+str(i)+"/")
         parsed_source = BS(source.text, "html.parser")
-        cars_part = parsed_source.find("div", class_="maincontent").find_all("div", class_="inzeraty inzeratyflex")
-        cars += cars_part
+        car_offer = parsed_source.find("div", class_="maincontent").find_all("div", class_="inzeraty inzeratyflex")
+        car_offers += car_offer
 
     car_instances = []
-    for car in cars:
+    for car in car_offers:
         title = car.find("div", class_="inzeratynadpis").find("h2", class_="nadpis").find("a").text
         image_url = car.find("div", class_="inzeratynadpis").find("a").find("img").get("src")
         price = car.find("div", class_="inzeratycena").find("b").text
